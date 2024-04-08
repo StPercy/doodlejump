@@ -19,8 +19,13 @@ const config = {
     false,
  )
  
- function preload() {}
+ function preload() {
+    this.load.image('background_img', 'assets/background.png')
+ }
  
- function create() {}
+ function create() {
+    this.add.image(0, 0, 'background_img').setOrigin(0, 0)
+    //this.add.image(config.width/2, config.height/2, 'background_img')
+ }
  
  function update() {}
