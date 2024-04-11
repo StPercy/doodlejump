@@ -30,12 +30,13 @@ let player
 let platforms
 let aKey
 let dKey
-let cursors
 let gameOverDistance = 0
+let enemies
+let gameOver = false
+let spacebar
+let ball
 let score = 0
 let scoreText
-let spacebar
-let gameOver = false
 // preloaded elements that will be used in the game
 function preload() {
     this.load.image('background_img', 'assets2/background.png')
