@@ -138,7 +138,7 @@ function update() {
     platforms.children.iterate(function (platform) {
         if (platform.y > player.y && player.body.center.distance(platform.body.center) > 700) {
             platform.x = Phaser.Math.Between(0, 640)
-            platform.y = platform.y - Phaser.Math.Between(1150, 1200)
+            platform.y = platform.y - Phaser.Math.Between(1180, 1200)
             platform.refreshBody()
         }
     })
