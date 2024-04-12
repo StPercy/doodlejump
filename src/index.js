@@ -119,7 +119,6 @@ function create() {
 }
 
 function update() {
-    if (gameOver) return
     checkMovement()
     checkBall()
     checkShoot()
@@ -127,6 +126,7 @@ function update() {
     refactorPlatforms()
     checkGameOver(this.physics)
     updateScore()
+    if (gameOver) return
 }
 // player helper functions
 function createPlayer(physics) {
@@ -239,19 +239,25 @@ function refactorEnemies() {
         if (enemy.y > player.y && player.body.center.distance(enemy.body.center) > 700) {
             enemy.x = Phaser.Math.Between(0, 640)
             enemy.y = enemy.y - Phaser.Math.Between(1600, 1200)
-            enemmy.enableBody(true, enemy.x, enemy.y, true, true)
+            enemy.enableBody(true, enemy.x, enemy.y, true, true)
         }
     })
 }
 // game over helper functions
 function checkGameOver(physics) {
     if (player.body.y > gameOverDistance) {
-        physics.pause()
-        gameOver = true
+        physics.pause();
+        gameOver = true;
+        scoreText.setText('GAME OVER! Score: ' + score);
+        scoreText.setOrigin(0.5, 0.5); // Zentrieren
+        scoreText.setColor('#FF0000'); // Rot machen
+        scoreText.setX(config.width / 2); // Horizontal in die Mitte setzen
+        //scoreText.setY(window.innerHeight / 2); // Vertikal in die Mitte setzen
     } else if (player.body.y * -1 - gameOverDistance * -1 > 600) {
-        gameOverDistance = player.body.y + 600
+        gameOverDistance = player.body.y + 600;
     }
 }
+
 // score helper functions
 function updateScore() {
     if (player.y * -1 > score) {
